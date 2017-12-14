@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import * as ReadableApi from '../api/readable-api';
 
@@ -10,7 +11,7 @@ class PostDetail extends Component {
   }
 
   componentDidMount() {
-    const id = '6ni6ok3ym7mf1p33lnez';
+    const id = this.props.match.params.postId;
     ReadableApi.getPost(id)
       .then(post => {
         console.log(`SUCCESS: Get post successful! (id: ${id})`);
@@ -18,6 +19,17 @@ class PostDetail extends Component {
       })
       .catch(error => {
         console.log(`ERROR: Get post failed! (id: ${id})`, error);
+      });
+  }
+
+  deletePost(id) {
+    ReadableApi.deletePost(id)
+      .then(() => {
+        console.log(`SUCCESS: Delete post successful! (id: ${id})`);
+        this.props.history.push('/');
+      })
+      .catch(error => {
+        console.log(`ERROR: Delete post failed! (id: ${id})`, error);
       });
   }
 
@@ -33,9 +45,9 @@ class PostDetail extends Component {
 
         <div className="row">
           <div className="col-sm-12">
-            <a className="btn btn-primary smallMargin">
+            <Link to="/" className="btn btn-primary smallMargin">
               <span className="glyphicon glyphicon-chevron-left" />
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -50,6 +62,7 @@ class PostDetail extends Component {
               </div>
               <ul className="list-group">
                 <li className="list-group-item">Author: {post.author}</li>
+                <li className="list-group-item">Category: {post.category}</li>
                 <li className="list-group-item">
                   No. of Comments: {post.commentCount}
                 </li>
@@ -58,12 +71,18 @@ class PostDetail extends Component {
                 </li>
               </ul>
               <div className="panel-footer">
-                <a className="btn btn-primary btn-sm smallMargin">
+                <Link
+                  to={`/posts/${post.id}`}
+                  className="btn btn-primary btn-sm smallMargin"
+                >
                   <span className="glyphicon glyphicon-edit" />
-                </a>
-                <a className="btn btn-warning btn-sm smallMargin">
+                </Link>
+                <button
+                  onClick={() => this.deletePost(post.id)}
+                  className="btn btn-warning btn-sm smallMargin"
+                >
                   <span className="glyphicon glyphicon-trash" />
-                </a>
+                </button>
               </div>
             </div>
           </div>

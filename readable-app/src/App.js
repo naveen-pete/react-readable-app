@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 
 import Posts from './components/posts';
 import PostDetail from './components/post-detail';
+import PostForm from './components/post-form';
 
 class App extends Component {
   render() {
@@ -12,8 +14,14 @@ class App extends Component {
             <h2>Readable</h2>
           </div>
         </div>
-        <Posts />
-        <PostDetail />
+
+        <Switch>
+          <Route exact path="/" component={Posts} />
+          <Route exact path="/posts/new" component={PostForm} />
+          <Route path="/posts/:id" component={PostForm} />
+          <Route path="/:category/:postId" component={PostDetail} />
+          <Route path="/:category" component={Posts} />
+        </Switch>
       </div>
     );
   }
