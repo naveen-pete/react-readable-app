@@ -7,3 +7,12 @@ body {
 .smallMargin {
   margin: 1px;
 }
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.alignMiddle {
+  vertical-align: middle;
+  padding-top: 15px;
+}

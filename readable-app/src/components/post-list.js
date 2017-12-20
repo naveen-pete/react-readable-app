@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import _ from 'lodash';
+import FontAwesome from 'react-fontawesome';
+
+import SortOn, { FIELD_DATE, ORDER_DESC } from './sort-on';
+import Post from './post';
+import AppAlert from './app-alert';
 
 import * as ReadableApi from '../api/readable-api';
 
@@ -7,7 +13,14 @@ class PostList extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { posts: [] };
+    this.state = {
+      posts: [],
+      sortParams: { field: FIELD_DATE, order: ORDER_DESC }
+    };
+
+    this.onDeletePost = this.onDeletePost.bind(this);
+    this.onChangeSortParams = this.onChangeSortParams.bind(this);
+    this.onVotePost = this.onVotePost.bind(this);
   }
 
   componentDidMount() {
@@ -43,7 +56,7 @@ class PostList extends Component {
       });
   }
 
-  deletePost(id) {
+  onDeletePost(id) {
     ReadableApi.deletePost(id)
       .then(() => {
         console.log(`SUCCESS: Delete post successful! (id: ${id})`);
@@ -56,87 +69,70 @@ class PostList extends Component {
       });
   }
 
-  renderSortBy() {
-    return (
-      <div className="well well-sm">
-        <label className="radio-inline">
-          <input
-            type="radio"
-            name="inlineRadioOptions"
-            id="inlineRadio1"
-            value="option1"
-          />{' '}
-          Sort by Date
-        </label>
-        <label className="radio-inline">
-          <input
-            type="radio"
-            name="inlineRadioOptions"
-            id="inlineRadio2"
-            value="option2"
-          />{' '}
-          Sort by Score
-        </label>
-      </div>
-    );
+  onChangeSortParams(sortParams) {
+    this.setState({ sortParams });
   }
 
-  renderTableBody() {
-    return this.state.posts.map(post => (
-      <tr key={post.id}>
-        <td>{post.title}</td>
-        <td>{post.author}</td>
-        <td>{post.commentCount}</td>
-        <td>{post.voteScore}</td>
-        <td>
-          <div className="btn-group btn-group-sm">
-            <Link className="btn btn-info" to={`/${post.category}/${post.id}`}>
-              <span className="glyphicon glyphicon-info-sign" />
-            </Link>
-            <Link className="btn btn-primary" to={`/posts/${post.id}`}>
-              <span className="glyphicon glyphicon-edit" />
-            </Link>
-            <button
-              onClick={() => this.deletePost(post.id)}
-              className="btn btn-warning"
-            >
-              <span className="glyphicon glyphicon-trash" />
-            </button>
-          </div>
-        </td>
-      </tr>
-    ));
-  }
-
-  renderTable() {
-    return (
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th># Comments</th>
-            <th>Vote Score</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>{this.renderTableBody()}</tbody>
-      </table>
-    );
+  onVotePost(id, voteOption) {
+    ReadableApi.votePost(id, voteOption)
+      .then(updatedPost => {
+        console.log(
+          `SUCCESS: Vote post successful! (id: ${id}, voteOption: ${voteOption})`
+        );
+        this.setState(prevState => {
+          const posts = prevState.posts.filter(post => post.id !== id);
+          let post = prevState.posts.find(post => post.id === id);
+          post = Object.assign({}, updatedPost);
+          posts.unshift(post);
+          return { posts };
+        });
+      })
+      .catch(error => {
+        console.log(
+          `ERROR: Vote post failed! (id: ${id}, voteOption: ${voteOption})`,
+          error
+        );
+      });
   }
 
   render() {
     const { category } = this.props;
+    const { posts, sortParams } = this.state;
+
+    const sortedPosts = _.orderBy(posts, sortParams.field, sortParams.order);
+
     return (
       <div>
         <div className="pull-right">
-          <Link to="/posts/new" className="btn btn-primary">
-            <span className="glyphicon glyphicon-plus" />
+          <Link to="/posts/new" className="btn btn-sm btn-primary">
+            <span className="glyphicon glyphicon-plus" /> New Post
           </Link>
         </div>
-        <h3>Posts (Category: {category ? category : 'all'})</h3>
-        {this.renderSortBy()}
-        {this.renderTable()}
+        <h4>
+          <FontAwesome name="envelope" /> Posts (Category:{' '}
+          {category ? category : 'all'})
+        </h4>
+        {sortedPosts.length > 0 ? (
+          <div>
+            <SortOn
+              params={this.state.sortParams}
+              changeSortParams={this.onChangeSortParams}
+            />
+            {sortedPosts.map(post => (
+              <Post
+                key={post.id}
+                post={post}
+                deletePost={this.onDeletePost}
+                votePost={this.onVotePost}
+              />
+            ))}
+          </div>
+        ) : (
+          <AppAlert
+            type="info"
+            message="No posts available for selected category."
+          />
+        )}
       </div>
     );
   }

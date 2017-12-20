@@ -38,3 +38,10 @@ export const deletePost = id =>
     method: 'DELETE',
     headers
   }).then(response => response.json() || {});
+
+export const votePost = (id, option) =>
+  fetch(`${baseApiUrl}/posts/${id}`, {
+    method: 'POST',
+    headers: { ...headers, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ option })
+  }).then(response => response.json() || {});

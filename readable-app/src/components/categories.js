@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import FontAwesome from 'react-fontawesome';
 
 import * as ReadableApi from '../api/readable-api';
+
+const CATEGORY_ALL = { name: 'all', path: '' };
 
 class Categories extends Component {
   constructor(props) {
     super(props);
 
-    this.all = { name: 'all', path: '' };
-    this.state = { categories: [this.all] };
+    this.state = { categories: [CATEGORY_ALL] };
   }
 
   componentDidMount() {
     ReadableApi.getCategories()
       .then(categories => {
         console.log('SUCCESS: Get categories successful!');
-        this.setState({ categories: [this.all, ...categories] });
+        this.setState({ categories: [CATEGORY_ALL, ...categories] });
       })
       .catch(error => {
         console.log('ERROR: Get categories failed!', error);
@@ -25,7 +27,9 @@ class Categories extends Component {
   render() {
     return (
       <div>
-        <h3>Categories</h3>
+        <h4>
+          <FontAwesome name="object-group" /> Category
+        </h4>
         <div className="list-group">
           {this.state.categories.map(category => (
             <NavLink

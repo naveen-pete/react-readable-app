@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import FontAwesome from 'react-fontawesome';
 
+import Voter from './voter';
 import * as ReadableApi from '../api/readable-api';
 
 class PostDetail extends Component {
@@ -39,35 +41,43 @@ class PostDetail extends Component {
       <div>
         <div className="row">
           <div className="col-sm-12">
-            <h3>Post Detail</h3>
+            <h4>
+              <FontAwesome name="envelope" /> Post Detail
+            </h4>
           </div>
         </div>
-
         <div className="row">
           <div className="col-sm-12">
-            <Link to="/" className="btn btn-primary smallMargin">
-              <span className="glyphicon glyphicon-chevron-left" />
+            <Link to="/" className="btn btn-sm btn-primary smallMargin">
+              <span className="glyphicon glyphicon-chevron-left" /> Posts
             </Link>
           </div>
         </div>
-
+        <br />
         <div className="row">
           <div className="col-sm-12">
-            <div className="panel panel-primary">
+            <div className="panel panel-info">
               <div className="panel-heading">
-                <h3 className="panel-title">{post.title}</h3>
+                <h3 className="panel-title">
+                  <FontAwesome name="envelope" /> {post.title}
+                </h3>
               </div>
               <div className="panel-body">
                 <p>{post.body}</p>
               </div>
               <ul className="list-group">
-                <li className="list-group-item">Author: {post.author}</li>
-                <li className="list-group-item">Category: {post.category}</li>
                 <li className="list-group-item">
-                  No. of Comments: {post.commentCount}
+                  <FontAwesome name="user" /> Author: {post.author}
                 </li>
                 <li className="list-group-item">
-                  Vote Score: {post.voteScore}
+                  <FontAwesome name="object-group" /> Category: {post.category}
+                </li>
+                <li className="list-group-item">
+                  <FontAwesome name="comments-o" /> {post.commentCount}{' '}
+                  comment(s)
+                </li>
+                <li className="list-group-item">
+                  <Voter score={post.voteScore} />
                 </li>
               </ul>
               <div className="panel-footer">
@@ -75,13 +85,13 @@ class PostDetail extends Component {
                   to={`/posts/${post.id}`}
                   className="btn btn-primary btn-sm smallMargin"
                 >
-                  <span className="glyphicon glyphicon-edit" />
+                  <span className="glyphicon glyphicon-edit" /> Edit
                 </Link>
                 <button
                   onClick={() => this.deletePost(post.id)}
                   className="btn btn-warning btn-sm smallMargin"
                 >
-                  <span className="glyphicon glyphicon-trash" />
+                  <span className="glyphicon glyphicon-trash" /> Delete
                 </button>
               </div>
             </div>

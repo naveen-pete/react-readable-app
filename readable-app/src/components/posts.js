@@ -9,10 +9,10 @@ class Posts extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col-sm-2">
+          <div className="col-sm-3">
             <Categories />
           </div>
-          <div className="col-sm-10">
+          <div className="col-sm-9">
             <PostList category={category} />
           </div>
         </div>

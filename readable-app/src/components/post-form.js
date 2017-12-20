@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import uuid from 'uuid';
+import FontAwesome from 'react-fontawesome';
 
 import * as ReadableApi from '../api/readable-api';
 const NEW_ID = 'new';
@@ -98,7 +99,9 @@ class PostForm extends Component {
 
     return (
       <div>
-        <h4>Post Form</h4>
+        <h4>
+          <FontAwesome name="envelope" /> Post Form
+        </h4>
         <div className="well well-lg">
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
@@ -156,11 +159,14 @@ class PostForm extends Component {
                 ))}
               </select>
             </div>
-            <button type="submit" className="btn btn-primary smallMargin">
-              <span className="glyphicon glyphicon-ok" />
+            <button
+              type="submit"
+              className="btn btn-primary btn-sm smallMargin"
+            >
+              <span className="glyphicon glyphicon-ok" /> Save
             </button>
-            <Link to="/" className="btn btn-warning smallMargin">
-              <span className="glyphicon glyphicon-remove" />
+            <Link to="/" className="btn btn-warning btn-sm smallMargin">
+              <span className="glyphicon glyphicon-remove" /> Cancel
             </Link>
           </form>
         </div>
