@@ -5,6 +5,7 @@ import _ from 'lodash';
 import CommentForm, { BLANK_COMMENT } from './comment-form';
 import Comment from './comment';
 import AppAlert from '../common/app-alert';
+import SortOn, { FIELD_DATE, ORDER_DESC } from '../common/sort-on';
 
 import * as ReadableApi from '../../api/readable-api';
 
@@ -14,8 +15,11 @@ class Comments extends Component {
 
     this.state = {
       comments: [],
-      commentToEdit: Object.assign({}, BLANK_COMMENT)
+      commentToEdit: Object.assign({}, BLANK_COMMENT),
+      sortParams: { field: FIELD_DATE, order: ORDER_DESC }
     };
+
+    this.onChangeSortParams = this.onChangeSortParams.bind(this);
 
     // CommentForm component related event handlers
     this.onAddComment = this.onAddComment.bind(this);
@@ -139,9 +143,17 @@ class Comments extends Component {
       });
   }
 
+  onChangeSortParams(sortParams) {
+    this.setState({ sortParams });
+  }
+
   render() {
-    const { comments } = this.state;
-    const sortedComments = _.orderBy(comments, 'timestamp', 'desc');
+    const { comments, sortParams } = this.state;
+    const sortedComments = _.orderBy(
+      comments,
+      sortParams.field,
+      sortParams.order
+    );
 
     return (
       <div>
@@ -159,9 +171,13 @@ class Comments extends Component {
               updateComment={this.onUpdateComment}
             />
           </div>
-          <div className="col-sm-8">
-            {sortedComments.length > 0 ? (
-              sortedComments.map(comment => (
+          {sortedComments.length > 0 ? (
+            <div className="col-sm-8">
+              <SortOn
+                params={this.state.sortParams}
+                changeSortParams={this.onChangeSortParams}
+              />
+              {sortedComments.map(comment => (
                 <Comment
                   key={comment.id}
                   comment={comment}
@@ -169,14 +185,16 @@ class Comments extends Component {
                   deleteComment={this.onDeleteComment}
                   voteComment={this.onVoteComment}
                 />
-              ))
-            ) : (
+              ))}
+            </div>
+          ) : (
+            <div className="col-sm-8">
               <AppAlert
                 type="info"
                 message="No comments available for this post."
               />
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     );
