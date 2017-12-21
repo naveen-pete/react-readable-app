@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Posts from './components/posts';
-import PostDetail from './components/post-detail';
-import PostForm from './components/post-form';
+import Posts from './components/posts/posts';
+import PostDetail from './components/posts/post-detail';
+import PostForm from './components/posts/post-form';
 
 class App extends Component {
   render() {

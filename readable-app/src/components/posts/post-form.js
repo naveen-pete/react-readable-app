@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import uuid from 'uuid';
 import FontAwesome from 'react-fontawesome';
 
-import * as ReadableApi from '../api/readable-api';
+import * as ReadableApi from '../../api/readable-api';
 const NEW_ID = 'new';
 
 class PostForm extends Component {
@@ -18,7 +18,7 @@ class PostForm extends Component {
         body: '',
         author: '',
         category: '',
-        timestamp: ''
+        timestamp: 0
       }
     };
 

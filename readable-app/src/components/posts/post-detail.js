@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 
-import Voter from './voter';
-import * as ReadableApi from '../api/readable-api';
+import Voter, { VOTER_UP_VOTE } from '../common/voter';
+import Comments from '../comments/comments';
+
+import * as ReadableApi from '../../api/readable-api';
 
 class PostDetail extends Component {
   constructor(props) {
@@ -32,6 +34,27 @@ class PostDetail extends Component {
       })
       .catch(error => {
         console.log(`ERROR: Delete post failed! (id: ${id})`, error);
+      });
+  }
+
+  votePost(id, voteOption) {
+    ReadableApi.votePost(id, voteOption)
+      .then(updatedPost => {
+        console.log(
+          `SUCCESS: Vote post successful! (id: ${id}, voteOption: ${voteOption})`
+        );
+        this.setState(prevState => {
+          const post = Object.assign({}, prevState.post);
+          post.voteScore =
+            voteOption === VOTER_UP_VOTE ? ++post.voteScore : --post.voteScore;
+          return { post };
+        });
+      })
+      .catch(error => {
+        console.log(
+          `ERROR: Vote post failed! (id: ${id}, voteOption: ${voteOption})`,
+          error
+        );
       });
   }
 
@@ -77,7 +100,10 @@ class PostDetail extends Component {
                   comment(s)
                 </li>
                 <li className="list-group-item">
-                  <Voter score={post.voteScore} />
+                  <Voter
+                    score={post.voteScore}
+                    vote={voteOption => this.votePost(post.id, voteOption)}
+                  />
                 </li>
               </ul>
               <div className="panel-footer">
@@ -95,6 +121,12 @@ class PostDetail extends Component {
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-sm-12">
+            <Comments postId={this.props.match.params.postId} />
           </div>
         </div>
       </div>

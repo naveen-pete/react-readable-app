@@ -36,7 +36,7 @@ class SortOn extends Component {
       <div className="well well-sm">
         <div className="row">
           <div className="col-sm-3">
-            <label htmlFor="sortField">Sort on:</label>
+            <label htmlFor="sortField">Sort on</label>
             <div className="form-group">
               <select
                 id="sortField"
@@ -50,7 +50,7 @@ class SortOn extends Component {
             </div>
           </div>
           <div className="col-sm-3">
-            <label htmlFor="sortOrder">Order:</label>
+            <label htmlFor="sortOrder">Order</label>
             <div className="form-group">
               <select
                 id="sortOrder"

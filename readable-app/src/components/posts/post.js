@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 
-import Voter from './voter';
+import Voter from '../common/voter';
 
 const Post = props => {
   const { post, deletePost } = props;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 
-import * as ReadableApi from '../api/readable-api';
+import * as ReadableApi from '../../api/readable-api';
 
 const CATEGORY_ALL = { name: 'all', path: '' };
 

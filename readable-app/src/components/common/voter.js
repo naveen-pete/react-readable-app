@@ -2,8 +2,8 @@ import React from 'react';
 
 import FontAwesome from 'react-fontawesome';
 
-const VOTER_UP_VOTE = 'upVote';
-const VOTER_DOWN_VOTE = 'downVote';
+export const VOTER_UP_VOTE = 'upVote';
+export const VOTER_DOWN_VOTE = 'downVote';
 
 const Voter = props => {
   return (

@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import FontAwesome from 'react-fontawesome';
 
-import SortOn, { FIELD_DATE, ORDER_DESC } from './sort-on';
+import SortOn, { FIELD_DATE, ORDER_DESC } from '../common/sort-on';
 import Post from './post';
-import AppAlert from './app-alert';
+import AppAlert from '../common/app-alert';
 
-import * as ReadableApi from '../api/readable-api';
+import * as ReadableApi from '../../api/readable-api';
 
 class PostList extends Component {
   constructor(props) {
@@ -80,10 +80,10 @@ class PostList extends Component {
           `SUCCESS: Vote post successful! (id: ${id}, voteOption: ${voteOption})`
         );
         this.setState(prevState => {
-          const posts = prevState.posts.filter(post => post.id !== id);
-          let post = prevState.posts.find(post => post.id === id);
-          post = Object.assign({}, updatedPost);
-          posts.unshift(post);
+          const prevPosts = prevState.posts.filter(
+            post => post.id !== updatedPost.id
+          );
+          const posts = [updatedPost, ...prevPosts];
           return { posts };
         });
       })
