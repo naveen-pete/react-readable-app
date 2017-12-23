@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 import uuid from 'uuid';
 
+import AppAlert from '../common/app-alert';
+
 import {
   getCategories,
   getPost,
@@ -79,79 +81,84 @@ class PostForm extends Component {
 
   render() {
     const { post } = this.state;
+    if (!post) {
+      return <AppAlert type="info" message="Loading..." />;
+    }
 
     return (
-      <div>
-        <h4>
-          <FontAwesome name="envelope" /> Post Form
-        </h4>
-        <div className="well well-lg">
-          <form onSubmit={this.handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="title">Title</label>
-              <input
-                required
-                type="text"
-                className="form-control"
-                id="title"
-                name="title"
-                value={post.title}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="body">Body</label>
-              <textarea
-                required
-                className="form-control"
-                id="body"
-                name="body"
-                cols="30"
-                rows="4"
-                value={post.body}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="author">Author</label>
-              <input
-                required
-                type="text"
-                className="form-control"
-                id="author"
-                name="author"
-                value={post.author}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="category">Category</label>
-              <select
-                required
-                className="form-control"
-                id="category"
-                name="category"
-                value={post.category}
-                onChange={this.handleChange}
+      <div className="row">
+        <div className="col-sm-12">
+          <h4>
+            <FontAwesome name="envelope" /> Post Form
+          </h4>
+          <div className="well well-lg">
+            <form onSubmit={this.handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="title">Title</label>
+                <input
+                  required
+                  type="text"
+                  className="form-control"
+                  id="title"
+                  name="title"
+                  value={post.title}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="body">Body</label>
+                <textarea
+                  required
+                  className="form-control"
+                  id="body"
+                  name="body"
+                  cols="30"
+                  rows="4"
+                  value={post.body}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="author">Author</label>
+                <input
+                  required
+                  type="text"
+                  className="form-control"
+                  id="author"
+                  name="author"
+                  value={post.author}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="category">Category</label>
+                <select
+                  required
+                  className="form-control"
+                  id="category"
+                  name="category"
+                  value={post.category}
+                  onChange={this.handleChange}
+                >
+                  <option value="" />
+                  {this.props.categories.map(category => (
+                    <option key={category.path} value={category.path}>
+                      {category.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <button
+                type="submit"
+                className="btn btn-primary btn-sm smallMargin"
               >
-                <option value="" />
-                {this.props.categories.map(category => (
-                  <option key={category.path} value={category.path}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <button
-              type="submit"
-              className="btn btn-primary btn-sm smallMargin"
-            >
-              <span className="glyphicon glyphicon-ok" /> Save
-            </button>
-            <Link to="/" className="btn btn-warning btn-sm smallMargin">
-              <span className="glyphicon glyphicon-remove" /> Cancel
-            </Link>
-          </form>
+                <span className="glyphicon glyphicon-ok" /> Save
+              </button>
+              <Link to="/" className="btn btn-warning btn-sm smallMargin">
+                <span className="glyphicon glyphicon-remove" /> Cancel
+              </Link>
+            </form>
+          </div>
         </div>
       </div>
     );
