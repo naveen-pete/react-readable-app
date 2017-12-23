@@ -9,6 +9,13 @@ import CommentsRoot from '../comments';
 
 import { votePost, deletePost, getPost } from '../../actions';
 
+// ------------------------------------------------------------------------
+// PostDetail component displays information related to a particular post.
+// It helps the user to perform following operations on a post:
+// 1. Vote a post (uses Voter component)
+// 2. Delete a post
+// 3. Manage comments for a post (uses CommentsRoot component)
+// ------------------------------------------------------------------------
 class PostDetail extends Component {
   componentDidMount() {
     const id = this.props.match.params.postId;

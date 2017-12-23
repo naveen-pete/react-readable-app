@@ -7,6 +7,9 @@ import { getCategories } from '../../actions';
 
 const CATEGORY_ALL = { name: 'all', path: '' };
 
+// ---------------------------------------------------------------------
+// Categories component displays the list of categories within the app.
+// ---------------------------------------------------------------------
 class Categories extends Component {
   componentDidMount() {
     this.props.getCategories();

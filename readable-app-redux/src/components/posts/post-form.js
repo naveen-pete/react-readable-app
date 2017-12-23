@@ -14,6 +14,10 @@ import {
   NEW_ID
 } from '../../actions';
 
+// ---------------------------------------------------------------------
+// PostForm component allows the user to add a new post. It also allows
+// the user to edit and update an existing post.
+// ---------------------------------------------------------------------
 class PostForm extends Component {
   constructor(props) {
     super(props);
@@ -37,14 +41,10 @@ class PostForm extends Component {
     this.props.getCategories();
     const id = this.props.match.params.id;
     if (id) {
-      this.getPost(id);
+      this.props.getPost(id, post => {
+        this.setState({ post });
+      });
     }
-  }
-
-  getPost(id) {
-    this.props.getPost(id, post => {
-      this.setState({ post });
-    });
   }
 
   handleSubmit(event) {
@@ -68,11 +68,9 @@ class PostForm extends Component {
   }
 
   handleChange(event) {
-    // Retrieve name, value and control type flag of the form control
     const { name, value } = event.target;
 
     this.setState(prevState => {
-      // Assign the updated value
       prevState.post[name] = value;
 
       return { post: prevState.post };
@@ -105,6 +103,7 @@ class PostForm extends Component {
                   onChange={this.handleChange}
                 />
               </div>
+
               <div className="form-group">
                 <label htmlFor="body">Body</label>
                 <textarea
@@ -118,6 +117,7 @@ class PostForm extends Component {
                   onChange={this.handleChange}
                 />
               </div>
+
               <div className="form-group">
                 <label htmlFor="author">Author</label>
                 <input
@@ -130,6 +130,7 @@ class PostForm extends Component {
                   onChange={this.handleChange}
                 />
               </div>
+
               <div className="form-group">
                 <label htmlFor="category">Category</label>
                 <select
@@ -148,6 +149,7 @@ class PostForm extends Component {
                   ))}
                 </select>
               </div>
+
               <button
                 type="submit"
                 className="btn btn-primary btn-sm smallMargin"

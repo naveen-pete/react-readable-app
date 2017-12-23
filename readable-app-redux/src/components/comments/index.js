@@ -17,7 +17,7 @@ import { getComments, setCommentsSortParams } from '../../actions';
 // 2. Comment component to show comments in a list
 // 3. SortOn component to display and change the sort field and
 //    sort order
-// 4. AppAlert component to display a message if not comments are
+// 4. AppAlert component to display a message if no comments are
 //    available for the post
 // --------------------------------------------------------------------
 class CommentsRoot extends Component {

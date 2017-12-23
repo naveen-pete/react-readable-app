@@ -7,6 +7,17 @@ import Voter from '../common/voter';
 
 import { votePost, deletePost } from '../../actions';
 
+// -----------------------------------------------------------------
+// Post component is used to display a single post within the list.
+// Additionally, this component allows the user to:
+// 1. Vote a post.
+// 2. View more details of a post. When View button is clicked, the
+//    post is displayed in the PostDetail component.
+// 3. Edit a post. When Edit button is clicked, the post is
+//    displayed in the PostForm component. The user can then make
+//    changes to the post and save it.
+// 4. Delete a post.
+// -----------------------------------------------------------------
 const Post = props => {
   const { post, deletePost, votePost } = props;
 

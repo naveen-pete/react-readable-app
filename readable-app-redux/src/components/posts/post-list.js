@@ -10,6 +10,15 @@ import AppAlert from '../common/app-alert';
 
 import { getPosts, setPostsSortParams } from '../../actions';
 
+// --------------------------------------------------------------------
+// PostList component displays the list of all posts (or) posts
+// belonging to a selected category. This component uses:
+// 1. Post component to display posts in a list
+// 2. SortOn component to display and change the sort field and
+//    sort order
+// 3. AppAlert component to display a message if no posts are
+//    available for a category
+// --------------------------------------------------------------------
 class PostList extends Component {
   constructor(props) {
     super(props);
