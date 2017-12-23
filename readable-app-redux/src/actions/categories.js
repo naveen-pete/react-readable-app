@@ -2,6 +2,9 @@ import { GET_CATEGORIES } from './types';
 
 import * as ReadableApi from '../api';
 
+// ------------------------------------------
+// Action creator for getting all categories
+// ------------------------------------------
 export function getCategories() {
   const request = ReadableApi.getCategories();
 

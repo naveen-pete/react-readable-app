@@ -12,6 +12,10 @@ import {
 
 import * as ReadableApi from '../api';
 
+// --------------------------------------------
+// Action creator for getting all comments for
+// a post
+// --------------------------------------------
 export function getComments(postId) {
   const request = ReadableApi.getComments(postId);
 
@@ -21,6 +25,10 @@ export function getComments(postId) {
   };
 }
 
+// --------------------------------------------
+// Action creator for creating a new comment
+// for a post
+// --------------------------------------------
 export function addComment(comment, callback = null) {
   const request = ReadableApi.addComment(comment);
   if (callback) {
@@ -33,6 +41,9 @@ export function addComment(comment, callback = null) {
   };
 }
 
+// --------------------------------------------
+// Action creator to update an existing comment
+// --------------------------------------------
 export function updateComment(comment, callback = null) {
   const request = ReadableApi.updateComment(comment);
   if (callback) {
@@ -45,6 +56,9 @@ export function updateComment(comment, callback = null) {
   };
 }
 
+// --------------------------------------
+// Action creator for deleting a comment
+// --------------------------------------
 export function deleteComment(id, callback = null) {
   const request = ReadableApi.deleteComment(id);
   if (callback) {
@@ -57,6 +71,9 @@ export function deleteComment(id, callback = null) {
   };
 }
 
+// ------------------------------------
+// Action creator for voting a comment
+// ------------------------------------
 export function voteComment(id, voteOption) {
   const request = ReadableApi.voteComment(id, voteOption);
 
@@ -66,6 +83,10 @@ export function voteComment(id, voteOption) {
   };
 }
 
+// --------------------------------------------
+// Action creator for storing sort parameters
+// for list of comments of a post
+// --------------------------------------------
 export function setCommentsSortParams(sortParams) {
   return {
     type: COMMENTS_SORT_PARAMS,
@@ -73,6 +94,10 @@ export function setCommentsSortParams(sortParams) {
   };
 }
 
+// --------------------------------------------------
+// Action creator for retrieving a comment when Edit
+// button is clicked
+// --------------------------------------------------
 export function editComment(id) {
   const request = ReadableApi.getComment(id);
 
@@ -82,6 +107,10 @@ export function editComment(id) {
   };
 }
 
+// -----------------------------------------------
+// Action creator for cancelling the Edit Comment
+// request
+// -----------------------------------------------
 export function clearEditComment() {
   const payload = {
     id: NEW_ID,

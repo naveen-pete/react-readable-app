@@ -1,3 +1,8 @@
+// --------------------------------------------
+// Action type constants required for various
+// user events in the application
+// --------------------------------------------
+
 // Action types for Posts
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 
