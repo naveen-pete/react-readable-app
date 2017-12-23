@@ -1,5 +1,9 @@
 import React from 'react';
 
+// ----------------------------------------------------
+// AppAlert component is used to display informational
+// or warning messages in the application.
+// ----------------------------------------------------
 const AppAlert = props => {
   const { type, message } = props;
 

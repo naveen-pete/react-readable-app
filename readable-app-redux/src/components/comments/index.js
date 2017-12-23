@@ -10,6 +10,16 @@ import SortOn from '../common/sort-on';
 
 import { getComments, setCommentsSortParams } from '../../actions';
 
+// --------------------------------------------------------------------
+// The root component for managing comments for a post. This component
+// uses:
+// 1. CommentForm component to add a new or update an existing comment
+// 2. Comment component to show comments in a list
+// 3. SortOn component to display and change the sort field and
+//    sort order
+// 4. AppAlert component to display a message if not comments are
+//    available for the post
+// --------------------------------------------------------------------
 class CommentsRoot extends Component {
   constructor(props) {
     super(props);

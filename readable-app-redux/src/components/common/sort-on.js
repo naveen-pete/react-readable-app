@@ -5,6 +5,10 @@ export const FIELD_SCORE = 'voteScore';
 export const ORDER_ASC = 'asc';
 export const ORDER_DESC = 'desc';
 
+// ------------------------------------------------------------
+// SortOn component helps the user to decide sort field and/or
+// sort order for sorting the list of posts and comments.
+// ------------------------------------------------------------
 class SortOn extends Component {
   constructor(props) {
     super(props);

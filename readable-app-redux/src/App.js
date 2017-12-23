@@ -6,6 +6,10 @@ import PostDetail from './components/posts/post-detail';
 import PostForm from './components/posts/post-form';
 import Header from './components/common/header';
 
+// -------------------------------------------------------
+// The root component of Readable app. Defines routes for
+// various views of the app
+// -------------------------------------------------------
 class App extends Component {
   render() {
     return (

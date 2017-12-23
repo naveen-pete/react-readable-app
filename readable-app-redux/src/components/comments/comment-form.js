@@ -20,6 +20,10 @@ export const BLANK_COMMENT = {
   voteScore: 0
 };
 
+// --------------------------------------------------------------
+// CommentForm component enables the user to add a new comment.
+// It is also used for editing and updating an existing comment.
+// --------------------------------------------------------------
 class CommentForm extends Component {
   constructor(props) {
     super(props);
@@ -66,11 +70,9 @@ class CommentForm extends Component {
   }
 
   handleChange(event) {
-    // Retrieve name, value and control type flag of the form control
     const { name, value } = event.target;
 
     this.setState(prevState => {
-      // Assign the updated value
       prevState.comment[name] = value;
 
       return { comment: prevState.comment };
@@ -102,6 +104,7 @@ class CommentForm extends Component {
               onChange={this.handleChange}
             />
           </div>
+
           <div className="form-group">
             <label htmlFor="body">
               <FontAwesome name="comment-o" /> Comment
@@ -117,6 +120,7 @@ class CommentForm extends Component {
               onChange={this.handleChange}
             />
           </div>
+
           <button type="submit" className="btn btn-primary btn-sm smallMargin">
             <span className="glyphicon glyphicon-ok" /> Save
           </button>

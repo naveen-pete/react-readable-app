@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 
+// --------------------------------------------------------
+// Header component displays the header of the application
+// --------------------------------------------------------
 const Header = props => {
   return (
     <nav className="navbar navbar-default navbar-fixed-top">

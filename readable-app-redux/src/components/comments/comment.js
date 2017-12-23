@@ -12,6 +12,15 @@ import {
   getPost
 } from '../../actions';
 
+// -----------------------------------------------------------------
+// Comment component is used to display a single comment for a post.
+// Additionally, this component allows the user to:
+// 1. Vote a comment
+// 2. Delete a comment
+// 3. Edit a comment. When Edit button is clicked the comment is
+//    displayed in the CommentForm component. The user can then make
+//    changes to the comment and update it.
+// -----------------------------------------------------------------
 const Comment = props => {
   const {
     comment,

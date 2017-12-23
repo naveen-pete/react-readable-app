@@ -12,20 +12,18 @@ import './index.css';
 import App from './App';
 import appReducer from './reducers';
 
-// https://github.com/zalmoxisus/redux-devtools-extension
-// If you write the way below:
-// ..., compose(
-//   applyMiddleware(ReduxPromise),
-//   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-// )
-// It will work in Chrome but break in Safari.
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+// Create Redux store for the app and apply Redux Promise
+// middleware for handling asyc server requests
 const store = createStore(
   appReducer,
   composeEnhancers(applyMiddleware(ReduxPromise))
 );
 
+// Enclose the application root component within:
+// 1. BrowserRouter component to create a Single Page App (SPA)
+// 2. Provider component to share the application state
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

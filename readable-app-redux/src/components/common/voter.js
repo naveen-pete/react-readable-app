@@ -1,10 +1,13 @@
 import React from 'react';
-
 import FontAwesome from 'react-fontawesome';
 
 export const VOTER_UP_VOTE = 'upVote';
 export const VOTER_DOWN_VOTE = 'downVote';
 
+// --------------------------------------------------------
+// Voter component allows the user to Up Vote or Down Vote
+// a post or a comment.
+// --------------------------------------------------------
 const Voter = props => {
   return (
     <div>
