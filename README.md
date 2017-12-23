@@ -19,4 +19,5 @@ Readable is a content and comment web app. Users will be able to post content to
 
 1. Go to `readable-app-redux` folder within `readable` folder by executing `cd readable\readable-app-redux` command in the terminal (or) command window
 2. Run `npm install` to install all the dependencies
-3. Run `npm start` to start the app 4. Open a browser window and navigate to http://localhost:3000/
+3. Run `npm start` to start the app
+4. Open a browser window and navigate to http://localhost:3000/

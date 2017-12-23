@@ -15,7 +15,7 @@ import appReducer from './reducers';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 // Create Redux store for the app and apply Redux Promise
-// middleware for handling asyc server requests
+// middleware for handling async server requests
 const store = createStore(
   appReducer,
   composeEnhancers(applyMiddleware(ReduxPromise))
