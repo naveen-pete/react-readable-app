@@ -24,7 +24,7 @@ class PostDetail extends Component {
 
   deletePost(id) {
     this.props.deletePost(id, () => {
-      this.props.history.push('/');
+      this.props.history.replace('/');
     });
   }
 
@@ -32,7 +32,14 @@ class PostDetail extends Component {
     const id = this.props.match.params.postId;
     const post = this.props.posts[id];
     if (!post) {
-      return <AppAlert type="info" message="Loading..." />;
+      return (
+        <div>
+          <AppAlert type="info" message="The post does not exist!" />
+          <Link to="/" className="btn btn-sm btn-primary">
+            <span className="glyphicon glyphicon-chevron-left" /> Go to Posts
+          </Link>
+        </div>
+      );
     }
 
     return (

@@ -53,7 +53,7 @@ const Post = props => {
       </div>
       <div className="panel-footer">
         <Link
-          className="btn btn-xs btn-primary smallMargin"
+          className="btn btn-xs btn-info smallMargin"
           to={`/${post.category}/${post.id}`}
         >
           <FontAwesome name="envelope-open-o" /> View
