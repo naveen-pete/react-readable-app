@@ -13,6 +13,9 @@ import {
 } from '../actions';
 import { FIELD_DATE, ORDER_DESC } from '../components/common/sort-on';
 
+// --------------------------------------------
+// Reducer to manage comments within the store
+// --------------------------------------------
 export function comments(state = {}, action) {
   let newState = {};
   switch (action.type) {
@@ -36,6 +39,10 @@ export function comments(state = {}, action) {
   }
 }
 
+// ----------------------------------------------
+// Reducer to store sort parameters for the list
+// of comments
+// ----------------------------------------------
 export function commentsSortParams(
   state = { field: FIELD_DATE, order: ORDER_DESC },
   action
@@ -49,14 +56,18 @@ export function commentsSortParams(
   }
 }
 
+// --------------------------------------------
+// Reducer to setup or cancel 'Edit Comment'
+// request
+// --------------------------------------------
 export function commentToEdit(
   state = {
     id: NEW_ID,
     body: '',
     author: '',
+    voteScore: 0,
     timestamp: 0,
-    parentId: '',
-    voteScore: 0
+    parentId: ''
   },
   action
 ) {

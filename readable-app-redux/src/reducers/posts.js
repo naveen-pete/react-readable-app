@@ -11,6 +11,9 @@ import {
 } from '../actions';
 import { FIELD_DATE, ORDER_DESC } from '../components/common/sort-on';
 
+// --------------------------------------------
+// Reducer to manage posts within the store
+// --------------------------------------------
 export function posts(state = {}, action) {
   let newState = {};
   switch (action.type) {
@@ -34,6 +37,10 @@ export function posts(state = {}, action) {
   }
 }
 
+// ----------------------------------------------
+// Reducer to store sort parameters for the list
+// of posts
+// ----------------------------------------------
 export function postsSortParams(
   state = { field: FIELD_DATE, order: ORDER_DESC },
   action
