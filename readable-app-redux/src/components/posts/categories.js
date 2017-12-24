@@ -24,15 +24,15 @@ class Categories extends Component {
           <FontAwesome name="object-group" /> Category
         </h4>
         <div className="list-group">
-          {categories.map(category => (
+          {categories.map(({ name, path }) => (
             <NavLink
-              key={category.path}
-              to={`/${category.path}`}
+              key={path}
+              to={`/${path}`}
               className="list-group-item"
               activeClassName="active"
               exact
             >
-              {category.name}
+              {name}
             </NavLink>
           ))}
         </div>

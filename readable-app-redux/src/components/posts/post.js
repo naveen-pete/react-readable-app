@@ -6,6 +6,7 @@ import FontAwesome from 'react-fontawesome';
 import Voter from '../common/voter';
 
 import { votePost, deletePost } from '../../actions';
+import { getFormattedDate } from '../../helpers';
 
 // -----------------------------------------------------------------
 // Post component is used to display a single post within the list.
@@ -46,8 +47,7 @@ const Post = props => {
             />
           </div>
           <div className="col-sm-4">
-            <FontAwesome name="clock-o" />{' '}
-            {new Date(Number(post.timestamp)).toString().substr(0, 21)}
+            <FontAwesome name="clock-o" /> {getFormattedDate(post.timestamp)}
           </div>
         </div>
       </div>
