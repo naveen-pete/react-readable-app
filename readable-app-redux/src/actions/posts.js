@@ -1,13 +1,4 @@
-import {
-  GET_POSTS,
-  GET_POST,
-  ADD_POST,
-  UPDATE_POST,
-  DELETE_POST,
-  VOTE_POST,
-  POSTS_SORT_PARAMS
-} from './types';
-
+import * as PostType from './post-types';
 import * as ReadableApi from '../api';
 
 // ----------------------------------------
@@ -20,7 +11,7 @@ export function getPosts(category) {
     : ReadableApi.getPosts();
 
   return {
-    type: GET_POSTS,
+    type: PostType.GET_POSTS,
     payload: request
   };
 }
@@ -36,7 +27,7 @@ export function getPost(id, callback = null) {
   }
 
   return {
-    type: GET_POST,
+    type: PostType.GET_POST,
     payload: request
   };
 }
@@ -51,7 +42,7 @@ export function addPost(post, callback = null) {
   }
 
   return {
-    type: ADD_POST,
+    type: PostType.ADD_POST,
     payload: request
   };
 }
@@ -66,7 +57,7 @@ export function updatePost(post, callback = null) {
   }
 
   return {
-    type: UPDATE_POST,
+    type: PostType.UPDATE_POST,
     payload: request
   };
 }
@@ -81,7 +72,7 @@ export function deletePost(id, callback = null) {
   }
 
   return {
-    type: DELETE_POST,
+    type: PostType.DELETE_POST,
     payload: request
   };
 }
@@ -93,7 +84,7 @@ export function votePost(id, voteOption) {
   const request = ReadableApi.votePost(id, voteOption);
 
   return {
-    type: VOTE_POST,
+    type: PostType.VOTE_POST,
     payload: request
   };
 }
@@ -104,7 +95,7 @@ export function votePost(id, voteOption) {
 // ----------------------------------------------
 export function setPostsSortParams(sortParams) {
   return {
-    type: POSTS_SORT_PARAMS,
+    type: PostType.POSTS_SORT_PARAMS,
     payload: sortParams
   };
 }

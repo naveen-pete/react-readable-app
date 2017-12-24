@@ -1,5 +1,4 @@
-import { GET_CATEGORIES } from './types';
-
+import { GET_CATEGORIES } from './post-types';
 import * as ReadableApi from '../api';
 
 // ------------------------------------------
