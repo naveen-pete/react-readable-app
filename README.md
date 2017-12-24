@@ -6,7 +6,7 @@ Readable is a content and comment web app. Users will be able to post content to
 
 ## Cloning this repository
 
-1. To clone `react-readable-app` into `readable` folder in your computer, run `git clone https://github.com/naveen-pete/react-readable-app.git readable` in the terminal (or) command window.
+1. To clone `react-readable-app` into `readable` folder on your computer, run `git clone https://github.com/naveen-pete/react-readable-app.git readable` in the terminal (or) command window.
 
 ## How to run the Readable API server?
 
