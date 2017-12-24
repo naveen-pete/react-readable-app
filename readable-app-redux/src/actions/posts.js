@@ -1,4 +1,4 @@
-import * as PostType from './post-types';
+import * as PostActionType from './post-types';
 import * as ReadableApi from '../api';
 
 // ----------------------------------------
@@ -11,7 +11,7 @@ export function getPosts(category) {
     : ReadableApi.getPosts();
 
   return {
-    type: PostType.GET_POSTS,
+    type: PostActionType.GET_POSTS,
     payload: request
   };
 }
@@ -27,7 +27,7 @@ export function getPost(id, callback = null) {
   }
 
   return {
-    type: PostType.GET_POST,
+    type: PostActionType.GET_POST,
     payload: request
   };
 }
@@ -42,7 +42,7 @@ export function addPost(post, callback = null) {
   }
 
   return {
-    type: PostType.ADD_POST,
+    type: PostActionType.ADD_POST,
     payload: request
   };
 }
@@ -57,7 +57,7 @@ export function updatePost(post, callback = null) {
   }
 
   return {
-    type: PostType.UPDATE_POST,
+    type: PostActionType.UPDATE_POST,
     payload: request
   };
 }
@@ -72,7 +72,7 @@ export function deletePost(id, callback = null) {
   }
 
   return {
-    type: PostType.DELETE_POST,
+    type: PostActionType.DELETE_POST,
     payload: request
   };
 }
@@ -84,7 +84,7 @@ export function votePost(id, voteOption) {
   const request = ReadableApi.votePost(id, voteOption);
 
   return {
-    type: PostType.VOTE_POST,
+    type: PostActionType.VOTE_POST,
     payload: request
   };
 }
@@ -95,7 +95,7 @@ export function votePost(id, voteOption) {
 // ----------------------------------------------
 export function setPostsSortParams(sortParams) {
   return {
-    type: PostType.POSTS_SORT_PARAMS,
+    type: PostActionType.POSTS_SORT_PARAMS,
     payload: sortParams
   };
 }

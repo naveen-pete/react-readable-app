@@ -1,4 +1,4 @@
-import * as CommentType from './comment-types';
+import * as CommentActionType from './comment-types';
 import * as ReadableApi from '../api';
 
 // --------------------------------------------
@@ -9,7 +9,7 @@ export function getComments(postId) {
   const request = ReadableApi.getComments(postId);
 
   return {
-    type: CommentType.GET_COMMENTS,
+    type: CommentActionType.GET_COMMENTS,
     payload: request
   };
 }
@@ -25,7 +25,7 @@ export function addComment(comment, callback = null) {
   }
 
   return {
-    type: CommentType.ADD_COMMENT,
+    type: CommentActionType.ADD_COMMENT,
     payload: request
   };
 }
@@ -40,7 +40,7 @@ export function updateComment(comment, callback = null) {
   }
 
   return {
-    type: CommentType.UPDATE_COMMENT,
+    type: CommentActionType.UPDATE_COMMENT,
     payload: request
   };
 }
@@ -55,7 +55,7 @@ export function deleteComment(id, callback = null) {
   }
 
   return {
-    type: CommentType.DELETE_COMMENT,
+    type: CommentActionType.DELETE_COMMENT,
     payload: request
   };
 }
@@ -67,7 +67,7 @@ export function voteComment(id, voteOption) {
   const request = ReadableApi.voteComment(id, voteOption);
 
   return {
-    type: CommentType.VOTE_COMMENT,
+    type: CommentActionType.VOTE_COMMENT,
     payload: request
   };
 }
@@ -78,7 +78,7 @@ export function voteComment(id, voteOption) {
 // --------------------------------------------
 export function setCommentsSortParams(sortParams) {
   return {
-    type: CommentType.COMMENTS_SORT_PARAMS,
+    type: CommentActionType.COMMENTS_SORT_PARAMS,
     payload: sortParams
   };
 }
@@ -91,7 +91,7 @@ export function editComment(id) {
   const request = ReadableApi.getComment(id);
 
   return {
-    type: CommentType.EDIT_COMMENT,
+    type: CommentActionType.EDIT_COMMENT,
     payload: request
   };
 }
@@ -102,7 +102,7 @@ export function editComment(id) {
 // -----------------------------------------------
 export function clearEditComment() {
   const payload = {
-    id: CommentType.NEW_ID,
+    id: CommentActionType.NEW_ID,
     body: '',
     author: '',
     timestamp: 0,
@@ -111,7 +111,7 @@ export function clearEditComment() {
   };
 
   return {
-    type: CommentType.CLEAR_EDIT_COMMENT,
+    type: CommentActionType.CLEAR_EDIT_COMMENT,
     payload
   };
 }
